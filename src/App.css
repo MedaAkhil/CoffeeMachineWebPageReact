@@ -12,6 +12,8 @@ p{
 }
 select{
   margin-top: 40px;
+  padding: 10px;
+  font-size: 1.6rem;
 }
 button{
   background-color: #fff;
@@ -22,7 +24,7 @@ button{
   background-color: #282c34;
   display: flex;
   flex-direction: row;
-  padding: 30px;
+  padding: 25px;
   font-size: calc(10px + 2vmin);
   color: white;
   gap: 1390px;
@@ -62,8 +64,10 @@ button{
   height: 280px;
   margin-top: 0;
   display: flex;
-  gap: 612px;
-  
+  gap: 312px;
+  background-color: black;
+  background: transparent;
+    backdrop-filter: blur(10px) ;
 }
 .bottompannelcup{
   border: 2px solid rgba(0, 0, 0, 0.2);
@@ -72,12 +76,6 @@ button{
   width: 35%;
   box-sizing: border-box;
   right: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-top: -2vh;
-  z-index: 100;
 }
 .bottompannelmenu{
   border: 2px solid rgba(0, 0, 0, 0.2);
@@ -88,8 +86,6 @@ button{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: -2vh;
-  z-index: 100;
 }
 .bottompannel .img1 {
   width: 120px;
@@ -103,4 +99,12 @@ button{
 
 .bottompannelmenu{
   width: 35%;
+}
+.pwbt{
+  width: 100px;
+  height: 100px;
+}
+.redbut{
+  border-radius: 50%;
+  margin-top: 40%;
 }
