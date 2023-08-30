@@ -8,7 +8,6 @@ import './App.css';
 function App() {
   const [coffeeType, setCoffeeType] = useState('');
   const [cupType,setCupType] = useState('');
-  const costPerMl=1;
   var coffeeCost = {
     espresso:2,
     cappuccino:9,
@@ -34,22 +33,22 @@ function App() {
 
           <select id="coffeeDropdown" value={coffeeType} onChange={(v)=>setCoffeeType(v.target.value)}>
           <option value="">Choose Coffee Type</option>
-            <option value="espresso">Espresso</option>
-            <option value="cappuccino">Cappuccino</option>
-            <option value="latte">Latte</option>
-            <option value="americano">Americano</option>
-            <option value="mocha">Mocha</option>
-            <option value="macchiato">Macchiato</option>
+            <option value="espresso">Espresso-2Rs/ml</option>
+            <option value="cappuccino">Cappuccino-9Rs/ml</option>
+            <option value="latte">Latte-3Rs/ml</option>
+            <option value="americano">Americano-5Rs/ml</option>
+            <option value="mocha">Mocha-7Rs/ml</option>
+            <option value="macchiato">Macchiato-6Rs/ml</option>
           </select>
         </div>
-        <div>
+        <div className="redbtndiv">
         <button className="redbut" onClick={()=> setNetCost(coffeeCost[coffeeType]*cupType)}><img className="pwbt" src={require('./images/power-on.png')}></img></button>
           <br /><h4>Your Bill:{netCost}</h4>
         </div>
         <div className="bottompannelcup">
-          <button value={cupType} onClick={() => setCupType(100)}><img className="img1" src={require('./images/coffee-cup.png')}></img></button>
-          <button value={cupType} onClick={() => setCupType(200)}><img className="img2" src={require('./images/coffee-cup.png')}></img></button>
-          <button value={cupType} onClick={() => setCupType(300)}><img className="img3" src={require('./images/coffee-cup.png')}></img></button>
+          <button className="cupbtn" value={cupType} onClick={() => setCupType(100)}><span>100ml</span><img className="img1" src={require('./images/coffee-cup.png')}></img></button>
+          <button className="cupbtn" value={cupType} onClick={() => setCupType(200)}><span>200ml</span><img className="img2" src={require('./images/coffee-cup.png')}></img></button>
+          <button className="cupbtn" value={cupType} onClick={() => setCupType(300)}><span>300ml</span><img className="img3" src={require('./images/coffee-cup.png')}></img></button>
         </div>
       </section>
     </div>
