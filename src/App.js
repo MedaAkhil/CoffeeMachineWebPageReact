@@ -16,10 +16,16 @@ function App() {
   const [percentage, setPercentage] = useState(0);
   const [isBrewing, setIsBrewing] = useState(false);
   const [showPowerButton, setShowPowerButton] = useState(true);
-  const [netCost, setNetCost] = useState(''); 
-  const [usrAmount,setUsrAmount] =useState();
-  const [coffeeType, setCoffeeType] = useState('');
-  const [cupType,setCupType] = useState('');
+  const [netCost, setNetCost] = useState(); 
+  const [usrAmount,setUsrAmount] = useState();
+  const [coffeeType, setCoffeeType] = useState();
+  const [cupType,setCupType] = useState();
+  const [elertMsg,setElertMsg] = useState();
+  const [paymentPage, setPaymentPage] = useState();
+  const [rs50coin,setrs50coin] = useState();
+  const [rs100coin,setrs100coin] = useState();
+  const [rs1000coin,setrs1000coin] = useState();
+  const [loadingPage, setLoadingPage] = useState();
   useEffect(() => {
     let interval;
   
@@ -40,7 +46,6 @@ function App() {
   
   const handleStartButtonClick = () => {
     setIsBrewing(true);
-    setNetCost(coffeeCost[coffeeType]*cupType);
   };
   
   var coffeeCost = {
@@ -52,36 +57,55 @@ function App() {
     macchiato:6,
   }
   const handleusertrans1 = () =>{
-    setNetCost(0);
     setCupType(100);
-    setNetCost(coffeeCost[coffeeType]*cupType);
+    funsetnetcost();
   }
   const handleusertrans2 = () =>{
-    setNetCost(0);
     setCupType(200);
-    setNetCost(coffeeCost[coffeeType]*cupType);
+    funsetnetcost();
   }
   const handleusertrans3 = () =>{
-    setNetCost(0);
     setCupType(300);
+    funsetnetcost();
+  }
+  const funsetnetcost = () =>{
     setNetCost(coffeeCost[coffeeType]*cupType);
   }
 
   const hndlePowerButtonClick = () =>{
-    if (usrAmount>netCost){
-      setShowPowerButton(false);
-      setNetCost(handleStartButtonClick);
+    setShowPowerButton(false);
+    setIsBrewing(true);
+  }
+  const handlePayButton = () => {
+    if (rs50coin && rs100coin && rs1000coin){
+      setUsrAmount((rs50coin*50)+(rs100coin*100)+(rs1000coin*1000));
+    } else if(rs50coin && rs100coin ){
+      setUsrAmount((rs50coin*50)+(rs100coin*100));
+    } else if (rs50coin){
+      setUsrAmount((rs50coin*50));
+    }
+    if (usrAmount>=netCost){
+      setShowPowerButton(true);
+      setLoadingPage(true);
+      setPaymentPage(false);
     }
     
-
   }
+  const handleProceedToPayButton = () => {
+    setNetCost(coffeeCost[coffeeType]*cupType);
+    setPaymentPage(true);
+  }
+
+
   return (
     <div className="App">
       <header className="App-header">
         <p><BiCoffee />    Coffee Machine</p>
         <p>Have a good coffee</p>
       </header>
-
+      {/* <p>usrAmount{usrAmount}:
+       50:{rs50coin} 100:{rs100coin} 1000:{rs1000coin}
+       </p> */}
       
 
       <section className="coffeeshop">
@@ -92,9 +116,7 @@ function App() {
           <img  src={require('./images/coffee-machine.png')}></img>
         </div>
         <div className="billDiv">
-          <input value={usrAmount} onChange={(v)=>setUsrAmount(v.target.value)} placeholder="Pay Your money"></input>
-          <h4>Your Bill:{netCost}</h4>
-          <h4>Your Change:</h4>
+          
         </div>
       </section>
       <section className="bottompannel">
@@ -110,10 +132,39 @@ function App() {
             <option value="mocha">Mocha - 7Rs/ml</option>
             <option value="macchiato">Macchiato - 6Rs/ml</option>
           </select>
-          <p>{coffeeType }cost:{coffeeCost[coffeeType]}</p>
+          <p>{coffeeType }:cost:{coffeeCost[coffeeType]} cuptype:{cupType}</p>
         </div>
-        <div className="tea-making-animation">
-      <div className="circle">
+        <button className="homepaybtn" onClick={handleProceedToPayButton}>Proceed to pay</button>
+        <div className="bottompannelcup">
+          <button className="cupbtn" onClick={handleusertrans1}><span>100ml</span><img className="img1" src={require('./images/coffee-cup.png')}></img></button>
+          <button className="cupbtn" onClick={handleusertrans2}><span>200ml</span><img className="img2" src={require('./images/coffee-cup.png')}></img></button>
+          <button className="cupbtn" onClick={handleusertrans3}><span>300ml</span><img className="img3" src={require('./images/coffee-cup.png')}></img></button>
+        </div>
+      </section>
+      {elertMsg &&<div className="alertMsg">
+    {elertMsg}<p>yout have an elert message</p><br />
+    <button>OK</button>
+    </div>}
+    {paymentPage && coffeeType && cupType &&<div className="paymentPage">
+    {elertMsg}<h1>Payments</h1><br />
+    <div>
+    
+          <h4>Your Bill Amount:{netCost}</h4>
+          <h4>Amount:{usrAmount}</h4>
+    </div>
+
+          <div className="tea-making-animation">
+            <div className="currency">
+            <div className="noteinput"><img src={require('./images/India_50_INR,_MG_series,_2011,_obverse.jpg')}></img><input className="currencyinput" type="number" value={rs50coin} onChange={(v) => setrs50coin(v.target.value)}></input></div>
+            <div><img src={require('./images/India_new_100_INR,_Mahatma_Gandhi_New_Series,_2018,_obverse.png')}></img><input className="currencyinput" type="number" value={rs100coin} onChange={(v) => setrs100coin(v.target.value)}></input></div>
+            <div><img src={require('./images/India_1000_INR,_MG_series,_2006,_obverse.jpg')}></img><input className="currencyinput" type="number" value={rs1000coin} onChange={(v) => setrs1000coin(v.target.value)}></input></div>
+            </div>
+      
+    </div>
+    <button onClick={handlePayButton}>Pay</button>
+      </div>}
+       {true && <section className="powerButtonAndLoadingButton">
+        <div className="circle">
         <div className={`mask full ${isBrewing ? 'brewing' : ''}`}>
           <div className="fill"></div>
         </div>
@@ -125,17 +176,11 @@ function App() {
         </div>
       </div>
         <div className="redbtndiv">
-         <button className="redbut" onClick={hndlePowerButtonClick}>{showPowerButton &&<img className="pwbt" src={require('./images/power-on.png')}></img>}</button>
+         {showPowerButton && <button className="redbut" onClick={hndlePowerButtonClick}><img className="pwbt" src={require('./images/power-on.png')}></img></button>}
           
         </div>
+       </section>}
       
-    </div>
-        <div className="bottompannelcup">
-          <button className="cupbtn" onClick={handleusertrans1}><span>100ml</span><img className="img1" src={require('./images/coffee-cup.png')}></img></button>
-          <button className="cupbtn" onClick={handleusertrans2}><span>200ml</span><img className="img2" src={require('./images/coffee-cup.png')}></img></button>
-          <button className="cupbtn" onClick={handleusertrans3}><span>300ml</span><img className="img3" src={require('./images/coffee-cup.png')}></img></button>
-        </div>
-      </section>
     </div>
   );
 }

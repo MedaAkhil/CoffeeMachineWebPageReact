@@ -74,8 +74,8 @@ button{
 .bottompannelcup{
   border: 2px solid rgba(0, 0, 0, 0.2);
   margin: 0;
-  padding: 30px 10px 0 10px;
-  width: 35%;
+  padding: 10px 2px 0 1px;
+  width: 37%;
   right: 0;
   /* display: inline-flex; */
 }
@@ -83,7 +83,7 @@ button{
   border: 2px solid rgba(0, 0, 0, 0.2);
   margin: 0;
   padding: 30px 0 0 10px;
-  width: 35%;
+  width: 34%;
   /* display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,14 +100,16 @@ button{
 }
 
 .bottompannelmenu{
-  width: 35%;
+  width: 34%;
 }
 .pwbt{
   width: 100px;
   height: 100px;
+  margin-top: -150px;
 }
 .redbut{
   border-radius: 50%;
+  background: transparent;
 }
 .redbtndiv{
   width: 28%;
@@ -115,6 +117,7 @@ button{
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: transparent;
 }
 .cupbtn{
   margin: -1px;
@@ -151,7 +154,7 @@ span{
   border-radius: 50%;
   position: relative;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  margin-right: -130px;
+  margin-bottom: -12px;
   z-index: -1;
 }
 
@@ -191,4 +194,64 @@ span{
 
 .percentage {
   color: #fff;
+}
+.alertMsg{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -80vh;
+  width: 80%;
+  height: 60vh;
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  background: transparent;
+  backdrop-filter: blur(15px);
+}
+.paymentPage{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: -80vh;
+  width: 80%;
+  height: 60vh;
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  background: transparent;
+  backdrop-filter: blur(20px);
+}
+.currency{
+  display: flex;
+  margin-top: 50px;
+}
+.currency img{
+  width: 190px;
+  margin: 10px;
+}
+.currencyinput{
+  height: 30px;
+  font-size: 1.2rem;
+  width: 80px;
+}
+/* .noteinput{
+  display: flex;
+  flex-direction: column;
+} */
+.homepaybtn{
+  margin: 0 10% 0 10%;
+  background: transparent;
+  font-size: 1.9rem;
+}
+.powerButtonAndLoadingButton{
+  margin-top: -100vh;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  backdrop-filter: blur(15px);
 }
